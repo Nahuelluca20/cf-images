@@ -1,15 +1,38 @@
 {
-  "name": "cf-images",
-  "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "@cloudflare/workers-types": "^4.20241106.0",
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "@total-typescript/tsconfig": "^1.0.4"
-  }
+	"name": "cf-images",
+	"type": "module",
+	"scripts": {
+		"build": "tsc",
+		"typecheck": "tsc --noEmit",
+		"quality": "biome check .",
+		"quality:fix": "biome check . --write --unsafe",
+		"exports": "bun run ./scripts/exports.ts"
+	},
+	"author": {
+		"name": "Nahuel Luca",
+		"email": "nahueldevelop@gmail.com",
+		"url": "https://nahuel-dev.pages.dev/"
+	},
+	"engines": {
+		"node": ">=20.0.0"
+	},
+	"files": ["build", "package.json", "README.md"],
+	"exports": {
+		".": "./build/index.js",
+		"./package.json": "./package.json"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@cloudflare/workers-types": "^4.20241106.0",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@arethetypeswrong/cli": "^0.17.0",
+		"@total-typescript/tsconfig": "^1.0.4",
+		"typedoc": "^0.26.11",
+		"typedoc-plugin-mdn-links": "^3.3.7"
+	}
 }
