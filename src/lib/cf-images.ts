@@ -1,13 +1,28 @@
+import { SecurityError } from "./errors";
+import { SecurityValidator } from "./validators";
+
 export namespace CFImages {
 	export interface CFImagesProps {
 		/**
-		 * Your cloudflare token
+		 * Your Cloudflare API token.
+		 * IMPORTANT: Never expose this token in client-side code.
+		 * @see https://developers.cloudflare.com/fundamentals/api/get-started/create-token/
 		 */
 		token: string;
+
 		/**
-		 * Your cloudflare accountID
+		 * Your Cloudflare account ID
+		 * IMPORTANT: Keep this private and never expose it in client-side code.
 		 */
 		accountId: string;
+
+		security?: {
+			/**
+			 * If true, will throw an error if the instance is created in a browser environment
+			 * @default true
+			 */
+			preventBrowserUsage?: boolean;
+		};
 	}
 
 	/**
@@ -60,9 +75,30 @@ export class CFImages {
 	readonly #accountId: string;
 	readonly #baseUrl: string;
 
-	constructor({ token, accountId }: CFImages.CFImagesProps) {
-		if (!token) throw new Error("Cloudflare token is required");
-		if (!accountId) throw new Error("Cloudflare account ID is required");
+	constructor({
+		token,
+		accountId,
+		security = {
+			preventBrowserUsage: true,
+		},
+	}: CFImages.CFImagesProps) {
+		if (
+			security.preventBrowserUsage &&
+			SecurityValidator.isRunningInBrowser()
+		) {
+			throw new SecurityError(
+				"CFImages instance detected in browser environment. " +
+					"For security reasons, this library should only be used in server-side code. " +
+					"See documentation for secure implementation examples.",
+			);
+		}
+
+		if (!token || !accountId) {
+			throw new SecurityError(
+				"Both token and accountId are required. " +
+					"These should be obtained from secure environment variables, not hardcoded.",
+			);
+		}
 
 		this.#token = token;
 		this.#accountId = accountId;

@@ -105,12 +105,4 @@ router.post(
 - [ ] Monitoring set up
 - [ ] Token rotation plan in place
 
-## Need Help?
-
-If you're unsure about any security aspects, please:
-
-1. Review our [Security Guide](link-to-guide)
-2. Check our [Example Implementation](link-to-example)
-3. Open an issue for security-related questions
-
 Remember: Security is a shared responsibility. While this library implements security best practices, proper implementation in your application is crucial.
