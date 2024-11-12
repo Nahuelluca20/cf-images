@@ -1,6 +1,6 @@
-import { SecurityValidator } from "../validators/security-validator";
-import { ImageService } from "./services/image-service";
-import { UploadService } from "./services/upload-service";
+import { SecurityValidator } from "../validators/security-validator.js";
+import { ImageService } from "./services/image-service.js";
+import { UploadService } from "./services/upload-service.js";
 
 export namespace CFImages {
 	/**

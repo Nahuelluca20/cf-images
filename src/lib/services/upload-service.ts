@@ -1,4 +1,4 @@
-import { CFImages } from "..";
+import { CFImages } from "../index.js";
 
 /**
  * Service for handling image upload operations

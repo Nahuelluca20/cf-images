@@ -52,7 +52,7 @@ Here's a complete example of a secure implementation:
 
 ```typescript
 // config/cloudflare.ts
-import { CFImages } from "your-library";
+import { CFImages } from "cf-images";
 import dotenv from "dotenv";
 
 export function createSecureUploader() {

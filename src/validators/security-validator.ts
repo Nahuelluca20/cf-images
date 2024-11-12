@@ -3,8 +3,8 @@
  * @class SecurityValidator
  */
 
-import { CFImages } from "../lib";
-import { SecurityError } from "../lib/errors/security-error";
+import { SecurityError } from "../lib/errors/security-error.js";
+import { CFImages } from "../lib/index.js";
 
 // biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class SecurityValidator {
