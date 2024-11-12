@@ -46,6 +46,7 @@ export class SecurityValidator {
 	 * @private
 	 */
 	private static isRunningInBrowser(): boolean {
-		return typeof window !== "undefined";
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		return typeof globalThis !== "undefined" && !!(globalThis as any).window;
 	}
 }

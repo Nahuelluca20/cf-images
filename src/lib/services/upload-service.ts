@@ -69,6 +69,7 @@ export class UploadService {
 			if (!response.ok) {
 				const errorData = await response.json();
 				throw new Error(
+					//@ts-ignore
 					`Cloudflare API error: ${errorData.errors?.[0]?.message || response.statusText}`,
 				);
 			}
