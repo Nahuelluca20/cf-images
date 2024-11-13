@@ -1,6 +1,6 @@
 {
 	"type": "module",
-	"name": "@siderdev/cf-images",
+	"name": "cf-images",
 	"version": "1.0.0",
 	"scripts": {
 		"build": "tsc",
