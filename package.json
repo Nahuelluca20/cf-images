@@ -35,6 +35,6 @@
 		"@arethetypeswrong/cli": "^0.17.0",
 		"@total-typescript/tsconfig": "^1.0.4",
 		"typedoc": "^0.26.11",
-		"typedoc-plugin-mdn-links": "^3.3.7"
+		"typedoc-plugin-mdn-links": "^4.0.1"
 	}
 }
