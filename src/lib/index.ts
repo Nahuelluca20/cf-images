@@ -22,6 +22,12 @@ export namespace CFImages {
 		accountId: string;
 
 		/**
+		 * Your Image account Hash
+		 * @important Keep this private and never expose it in client-side code
+		 */
+		imageAccountHash: string;
+
+		/**
 		 * Security configuration options
 		 */
 		security?: SecurityConfig;
@@ -100,6 +106,24 @@ export namespace CFImages {
 		errors: string[];
 		messages: string[];
 	}
+
+	/**
+	 * Gets an image by ID
+	 * @param imageId - ID of the image to retrieve
+	 * @param variantName
+	 * @returns Promise resolving to the image details
+	 */
+	export interface ServeImageParams {
+		imageId: string;
+		variantName: string;
+	}
+
+	/**
+	 * Serve Image response
+	 */
+	export interface ServeImageResponse {
+		url: string;
+	}
 }
 
 /**
@@ -120,7 +144,7 @@ export class CFImages {
 		SecurityValidator.validateConfiguration(config);
 
 		this.#uploadService = new UploadService(config.accountId, config.token);
-		this.#imageService = new ImageService(config.accountId, config.token);
+		this.#imageService = new ImageService(config.imageAccountHash);
 	}
 
 	/**
@@ -156,5 +180,11 @@ export class CFImages {
 		options: CFImages.ImageUploadOptions,
 	): Promise<CFImages.ImageOperationResult> {
 		return this.#uploadService.uploadImage(options);
+	}
+
+	async getImage(
+		options: CFImages.ServeImageParams,
+	): Promise<CFImages.ServeImageResponse> {
+		return this.#imageService.getImage(options);
 	}
 }

@@ -1,29 +1,49 @@
+import type { CFImages } from "../index.js";
+
+export namespace ImageService {
+	export interface ImageServiceConf {
+		/**
+		 * @param imagesAccountHash - Your Images account hash
+		 */
+		imagesAccountHash: string;
+	}
+}
+
 /**
  * Service for managing existing images
  * @class ImageService
  */
 export class ImageService {
-	readonly #baseUrl: string;
-	readonly #token: string;
-
+	readonly #serveImageURL: string;
+	readonly #imagesAccountHash: ImageService.ImageServiceConf["imagesAccountHash"];
 	/**
 	 * Creates an instance of ImageService
-	 * @param accountId - Cloudflare account ID
-	 * @param token - Cloudflare API token
 	 */
-	constructor(accountId: string, token: string) {
-		this.#baseUrl = `https://api.cloudflare.com/client/v4/accounts/${accountId}/images/v1`;
-		this.#token = token;
+	constructor(
+		imagesAccountHash: ImageService.ImageServiceConf["imagesAccountHash"],
+	) {
+		this.#imagesAccountHash = imagesAccountHash;
+		this.#serveImageURL = `https://imagedelivery.net/${this.#imagesAccountHash}`;
+	}
+
+	async getImage({
+		imageId,
+		variantName,
+	}: CFImages.ServeImageParams): Promise<CFImages.ServeImageResponse> {
+		if (!imageId || !variantName) {
+			throw new Error("ImageId or variantName are not valid");
+		}
+
+		try {
+			const publicImageUrl = `${this.#serveImageURL}/${imageId}/${variantName}`;
+
+			return { url: publicImageUrl };
+		} catch (error) {
+			throw new Error(`Cloudflare API error: ${error}`);
+		}
 	}
 
 	// Future methods:
-	/**
-	 * Gets an image by ID
-	 * @param imageId - ID of the image to retrieve
-	 * @returns Promise resolving to the image details
-	 */
-	// async getImage(imageId: string): Promise<CFImages.ImageOperationResult>
-
 	/**
 	 * Lists all images
 	 * @param page - Page number for pagination
