@@ -3,13 +3,7 @@
 To install dependencies:
 
 ```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
+bun install cf-images
 ```
 
 This project was created using `bun init` in bun v1.1.0. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
@@ -65,6 +59,7 @@ export function createSecureUploader() {
   return new CFImages({
     token: process.env.CLOUDFLARE_TOKEN,
     accountId: process.env.CLOUDFLARE_ACCOUNT_ID,
+    imageAccountHash: process.env.IMAGE_ACCOUNT_HASH,
   });
 }
 

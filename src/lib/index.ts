@@ -158,6 +158,7 @@ export class CFImages {
 	 * const cfImages = new CFImages({
 	 *   token: 'your-token',
 	 *   accountId: 'your-account-id'
+	 * 	 imageAccountHash: 'your-image-account-hash'
 	 * });
 	 *
 	 * // Upload from URL
