@@ -1,7 +1,10 @@
 {
 	"type": "module",
 	"name": "cf-images",
-	"version": "1.0.0",
+	"license": "MIT",
+	"version": "1.0.1",
+	"homepage": "https://github.com/Nahuelluca20/cf-images",
+	"documentation": "https://nahuelluca20.github.io/cf-images/",
 	"scripts": {
 		"build": "tsc",
 		"typecheck": "tsc --noEmit",
