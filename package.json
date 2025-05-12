@@ -35,7 +35,7 @@
 		"typescript": "^5.0.0"
 	},
 	"dependencies": {
-		"@arethetypeswrong/cli": "^0.17.0",
+		"@arethetypeswrong/cli": "^0.18.1",
 		"@total-typescript/tsconfig": "^1.0.4",
 		"typedoc": "^0.28.0",
 		"typedoc-plugin-mdn-links": "^5.0.1"
