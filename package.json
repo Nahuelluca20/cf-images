@@ -27,7 +27,7 @@
 		"./package.json": "./package.json"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.1",
+		"@biomejs/biome": "2.5.2",
 		"@cloudflare/workers-types": "^5.20260706.1",
 		"@types/bun": "latest"
 	},
